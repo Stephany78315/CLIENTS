@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -9,23 +10,33 @@ using UPB.ProyectoFinal.Logic.Model;
 namespace UPB.ProyectoFinal.Clients.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/clients")]
     public class ClientsController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
+        private readonly IConfiguration _config;
+        public ClientsController(IConfiguration config)
         {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
-        private readonly ILogger<ClientsController> _logger;
-
-        public ClientsController(ILogger<ClientsController> logger)
-        {
-            _logger = logger;
+            _config = config;
         }
 
         [HttpGet]
-        public IEnumerable<Client> Get()
+        public List<Client> GetClients()
+        {
+            return null;
+        }
+
+        [HttpPost]
+        public List<Client> CreateClient()
+        {
+            return null;
+        }
+        [HttpPut]
+        public List<Client> UpdateClient()
+        {
+            return null;
+        }
+        [HttpDelete]
+        public List<Client> DeleteClient()
         {
             return null;
         }
