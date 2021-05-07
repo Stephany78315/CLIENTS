@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UPB.ProyectoFinal.Logic.Model;
+using UPB.ProyectoFinal.Logic.Manager;
 
 namespace UPB.ProyectoFinal.Clients.Controllers
 {
@@ -14,31 +15,33 @@ namespace UPB.ProyectoFinal.Clients.Controllers
     public class ClientsController : ControllerBase
     {
         private readonly IConfiguration _config;
-        public ClientsController(IConfiguration config)
+        private readonly IClientManager _clientManager;
+        public ClientsController(IConfiguration config,IClientManager clientManager)
         {
             _config = config;
+            _clientManager = clientManager;
         }
 
         [HttpGet]
         public List<Client> GetClients()
         {
-            return null;
+            return _clientManager.GetAllClients();
         }
 
         [HttpPost]
-        public List<Client> CreateClient()
+        public List<Client> CreateClient(Client client)
         {
-            return null;
+            return _clientManager.CreateClient(client);
         }
         [HttpPut]
-        public List<Client> UpdateClient()
+        public List<Client> UpdateClient(Client client)
         {
-            return null;
+            return _clientManager.UpdateClient(client);
         }
         [HttpDelete]
-        public List<Client> DeleteClient()
+        public List<Client> DeleteClient(Client client)
         {
-            return null;
+            return _clientManager.DeleteClient(client);
         }
     }
 }

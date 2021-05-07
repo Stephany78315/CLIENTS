@@ -10,6 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using UPB.ProyectoFinal.Data;
+using UPB.ProyectoFinal.Logic.Manager;
 
 namespace UPB.ProyectoFinal.Clients
 {
@@ -26,6 +28,8 @@ namespace UPB.ProyectoFinal.Clients
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSingleton<IDbContext, DbContext>();
+            services.AddTransient<IClientManager, ClientManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
