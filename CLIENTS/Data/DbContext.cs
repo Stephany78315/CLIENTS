@@ -2,7 +2,7 @@
 
 namespace UPB.ProyectoFinal.Data
 {
-    public class DbContext
+    public class DbContext:IDbContext
     {
     }
 }

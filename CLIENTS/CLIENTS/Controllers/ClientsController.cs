@@ -1,33 +1,47 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UPB.ProyectoFinal.Logic.Model;
+using UPB.ProyectoFinal.Logic.Manager;
 
 namespace UPB.ProyectoFinal.Clients.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/clients")]
     public class ClientsController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
+        private readonly IConfiguration _config;
+        private readonly IClientManager _clientManager;
+        public ClientsController(IConfiguration config,IClientManager clientManager)
         {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
-        private readonly ILogger<ClientsController> _logger;
-
-        public ClientsController(ILogger<ClientsController> logger)
-        {
-            _logger = logger;
+            _config = config;
+            _clientManager = clientManager;
         }
 
         [HttpGet]
-        public IEnumerable<Client> Get()
+        public List<Client> GetClients()
         {
-            return null;
+            return _clientManager.GetAllClients();
+        }
+
+        [HttpPost]
+        public List<Client> CreateClient(Client client)
+        {
+            return _clientManager.CreateClient(client);
+        }
+        [HttpPut]
+        public List<Client> UpdateClient(Client client)
+        {
+            return _clientManager.UpdateClient(client);
+        }
+        [HttpDelete]
+        public List<Client> DeleteClient(Client client)
+        {
+            return _clientManager.DeleteClient(client);
         }
     }
 }
