@@ -25,15 +25,8 @@ namespace UPB.ProyectoFinal.Data
         {
             ruta = @"C:\UPB\Certificación 1\proyect-clients\CLIENTS\clientes.json";
 
-           ClientTable = new List<Client>()
-            {
-                /*// new Student() {Name = $"Pablo from env: {projectTitle}, " },
-                new Client() { Id = "Group-000", Name = "Pablo" , AvailableSlots = 2},
-                new Client() { Id = "Group-001", Name = "Monica", AvailableSlots = 3},
-                new Client() { Id = "Group-002", Name = "Juan", AvailableSlots = 5}
-                */
-            };
-
+            ClientTable = new List<Client>()
+            { };
             File.WriteAllText(ruta, Newtonsoft.Json.JsonConvert.SerializeObject(ClientTable));
 
 
