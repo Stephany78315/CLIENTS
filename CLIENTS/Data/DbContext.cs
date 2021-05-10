@@ -8,22 +8,48 @@ namespace UPB.ProyectoFinal.Data
 {
     public class DbContext: IDbContext
     {
+        public List<Client> ClientTable { get; set; }
         public string ruta;
-        public List<Client> grupos = new List<Client>();
+        /*
+         {
+          "nombre": "Juan Carlos Morales Baltazar",
+          "ci": 1233455,
+          "direccion": "Calle Arivancha Nro 234",
+          "telefono": 4132112,
+          "ranking": 2,
+          "codigo": "string"
+          }
+        */
 
         public DbContext()
         {
-            ruta = @"C:\UPB\Certificación 1\proyect-clients\CLIENTS";
+            ruta = @"C:\UPB\Certificación 1\proyect-clients\CLIENTS\clientes.json";
+
+           ClientTable = new List<Client>()
+            {
+                /*// new Student() {Name = $"Pablo from env: {projectTitle}, " },
+                new Client() { Id = "Group-000", Name = "Pablo" , AvailableSlots = 2},
+                new Client() { Id = "Group-001", Name = "Monica", AvailableSlots = 3},
+                new Client() { Id = "Group-002", Name = "Juan", AvailableSlots = 5}
+                */
+            };
+
+            File.WriteAllText(ruta, Newtonsoft.Json.JsonConvert.SerializeObject(ClientTable));
+
+
+
         }
 
         public List<Client> GetAllClients()
         {
-            grupos = JsonConvert.DeserializeObject<List<Client>>(File.ReadAllText(ruta));
+            List<Client> grupos = new List<Client>();
+             grupos = JsonConvert.DeserializeObject<List<Client>>(File.ReadAllText(ruta));
 
             return grupos;
         }
         public List<Client> CreateClient(Client client)
         {
+            List<Client> grupos = new List<Client>();
             grupos = JsonConvert.DeserializeObject<List<Client>>(File.ReadAllText(ruta));
             grupos.Add(client);
             File.WriteAllText(ruta, JsonConvert.SerializeObject(grupos));
@@ -32,6 +58,7 @@ namespace UPB.ProyectoFinal.Data
         }
         public List<Client> UpdateClient(Client clientToUpdate)
         {
+            List<Client> grupos = new List<Client>();
             grupos = JsonConvert.DeserializeObject<List<Client>>(File.ReadAllText(ruta));
 
             Client foundClient = grupos.Find(client => client.Client_Id == clientToUpdate.Client_Id);
@@ -49,9 +76,12 @@ namespace UPB.ProyectoFinal.Data
         }
         public List<Client> DeleteClient(Client clientToDelete)
         {
+            List<Client> grupos = new List<Client>();
             grupos = JsonConvert.DeserializeObject<List<Client>>(File.ReadAllText(ruta));
 
             grupos.RemoveAll(client => client.Client_Id == clientToDelete.Client_Id);
+
+            Console.WriteLine(clientToDelete.Client_Id);
 
             File.WriteAllText(ruta, JsonConvert.SerializeObject(grupos));
 
