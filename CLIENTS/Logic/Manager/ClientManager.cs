@@ -16,32 +16,24 @@ namespace UPB.ProyectoFinal.Logic.Manager
 
         public List<Client> CreateClient(Client client)
         {
-            client = new Client
-            {
-                Nombre = "Juan Carlos Morales Baltazar",
-                CI = 1233455,
-                Direccion = "Calle Arivancha Nro 234",
-                Telefono = 4132112,
-                Ranking = 2
-            };
             client.Codigo = GenerateCode(client);
-            //Parte de DbContext
-            return null;
+             
+            return DTOMappers.MapClients(_dbContext.CreateClient(DTOMappers.MapClientLD(client)));
         }
 
         public List<Client> DeleteClient(Client client)
         {
-            return null;
+            return DTOMappers.MapClients(_dbContext.DeleteClient(DTOMappers.MapClientLD(client)));
         }
 
         public List<Client> GetAllClients()
         {
-            return null;
+            return DTOMappers.MapClients(_dbContext.GetAllClients());
         }
 
         public List<Client> UpdateClient(Client client)
         {
-            return null;
+            return DTOMappers.MapClients(_dbContext.UpdateClient(DTOMappers.MapClientLD(client)));
         }
 
         private string GenerateCode(Client client)
