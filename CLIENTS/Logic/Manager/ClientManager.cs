@@ -16,14 +16,6 @@ namespace UPB.ProyectoFinal.Logic.Manager
 
         public List<Client> CreateClient(Client client)
         {
-            /*client = new Client
-            {
-                Nombre = "Juan Carlos Morales Baltazar",
-                CI = 1233455,
-                Direccion = "Calle Arivancha Nro 234",
-                Telefono = 4132112,
-                Ranking = 2
-            };*/
             client.Codigo = GenerateCode(client);
              
             return DTOMappers.MapClients(_dbContext.CreateClient(DTOMappers.MapClientLD(client)));

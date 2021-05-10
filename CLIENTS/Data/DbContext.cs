@@ -10,21 +10,12 @@ namespace UPB.ProyectoFinal.Data
     {
         public List<Client> ClientTable { get; set; }
         public string ruta;
-        /*
-         {
-          "nombre": "Juan Carlos Morales Baltazar",
-          "ci": 1233455,
-          "direccion": "Calle Arivancha Nro 234",
-          "telefono": 4132112,
-          "ranking": 2,
-          "codigo": "string"
-          }
-        */
+        
 
         public DbContext()
         {
-            ruta = @"C:\UPB\Certificación 1\proyect-clients\CLIENTS\clientes.json";
-
+            ruta = Directory.GetCurrentDirectory() + @"\clientes.json";
+           
             ClientTable = new List<Client>()
             { };
             File.WriteAllText(ruta, Newtonsoft.Json.JsonConvert.SerializeObject(ClientTable));
