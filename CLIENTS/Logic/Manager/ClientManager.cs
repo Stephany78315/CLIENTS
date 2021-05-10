@@ -26,22 +26,27 @@ namespace UPB.ProyectoFinal.Logic.Manager
             };
             client.Codigo = GenerateCode(client);
             //Parte de DbContext
-            return null;
+
+           // _dbContext.CreateClient(DTOMappers.MapClientLD(client));
+            //Se debe devolver algo 
+            return DTOMappers.MapClients(_dbContext.CreateClient(DTOMappers.MapClientLD(client)));
         }
 
         public List<Client> DeleteClient(Client client)
         {
-            return null;
+            //_dbContext.DeleteClient(DTOMappers.MapClientLD(client));
+            //Se debe devolver algo 
+            return DTOMappers.MapClients(_dbContext.DeleteClient(DTOMappers.MapClientLD(client)));
         }
 
         public List<Client> GetAllClients()
         {
-            return null;
+            return DTOMappers.MapClients(_dbContext.GetAllClients());
         }
 
         public List<Client> UpdateClient(Client client)
         {
-            return null;
+            return DTOMappers.MapClients(_dbContext.UpdateClient(DTOMappers.MapClientLD(client)));
         }
 
         private string GenerateCode(Client client)
