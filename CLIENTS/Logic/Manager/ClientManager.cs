@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UPB.ProyectoFinal.Logic.Model;
 using UPB.ProyectoFinal.Data;
+using UPB.ProyectoFinal.Logic.Exceptions;
 
 namespace UPB.ProyectoFinal.Logic.Manager
 {
@@ -14,15 +15,19 @@ namespace UPB.ProyectoFinal.Logic.Manager
             _dbContext = dbContext;
         }
 
+        
         public List<Client> CreateClient(Client client)
         {
-            client.Codigo = GenerateCode(client);
-             
+           if (String.IsNullOrEmpty (client.Nombre)) { throw new ClientException("No puede dejar el nombre vacio"); }
+            if (10000000 < client.CI && client.CI < 100000000) { throw new ClientException("Carnet de identidad invalido"); }
+            client.Codigo = GenerateCode(client);  
             return DTOMappers.MapClients(_dbContext.CreateClient(DTOMappers.MapClientLD(client)));
         }
 
         public List<Client> DeleteClient(Client client)
         {
+            if (String.IsNullOrEmpty(client.Nombre)) { throw new ClientException("No puede dejar el nombre vacio"); }
+            if (10000000 < client.CI && client.CI < 100000000) { throw new ClientException("Carnet de identidad invalido"); }
             return DTOMappers.MapClients(_dbContext.DeleteClient(DTOMappers.MapClientLD(client)));
         }
 
@@ -33,6 +38,8 @@ namespace UPB.ProyectoFinal.Logic.Manager
 
         public List<Client> UpdateClient(Client client)
         {
+            if (String.IsNullOrEmpty(client.Nombre)) { throw new ClientException("No puede dejar el nombre vacio"); }
+            if (10000000 < client.CI && client.CI < 100000000) { throw new ClientException("Carnet de identidad invalido"); }
             return DTOMappers.MapClients(_dbContext.UpdateClient(DTOMappers.MapClientLD(client)));
         }
 
