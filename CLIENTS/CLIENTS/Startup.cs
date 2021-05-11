@@ -15,14 +15,21 @@ using System.Reflection;
 using System.Threading.Tasks;
 using UPB.ProyectoFinal.Data;
 using UPB.ProyectoFinal.Logic.Manager;
+using Serilog;
 
 namespace UPB.ProyectoFinal.Clients
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, Microsoft.AspNetCore.Hosting.IHostingEnvironment env)
         {
             Configuration = configuration;
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel
+                .Information()
+                .WriteTo.File($"{Directory.GetCurrentDirectory()}/Logger.log")
+                .CreateLogger();
+            Log.Information($"Se encuentra en: {env.EnvironmentName}");
         }
 
         public IConfiguration Configuration { get; }

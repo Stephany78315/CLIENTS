@@ -4,11 +4,11 @@ using System.Text;
 
 namespace UPB.ProyectoFinal.Logic.Exceptions
 {
-    public class ClientException : Exception
+    public class ClientAttrException : Exception
     {
-        public ClientException(string message) : base(message)
+        public ClientAttrException(string message) : base(message)
         {
-        
+                
         }
     }
 }
