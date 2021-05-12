@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using UPB.ProyectoFinal.Logic.Model;
 using UPB.ProyectoFinal.Logic.Manager;
 
+
 namespace UPB.ProyectoFinal.Clients.Controllers
 {
     [ApiController]
@@ -31,17 +32,24 @@ namespace UPB.ProyectoFinal.Clients.Controllers
         [HttpPost]
         public List<Client> CreateClient(Client client)
         {
-            return _clientManager.CreateClient(client);
-        }
+           
+                return _clientManager.CreateClient(client);
+            
+            }
         [HttpPut]
         public List<Client> UpdateClient(Client client)
         {
-            return _clientManager.UpdateClient(client);
-        }
+           
+                return _clientManager.UpdateClient(client);
+           
+            }
         [HttpDelete]
         public List<Client> DeleteClient(Client client)
         {
+
             return _clientManager.DeleteClient(client);
+
+
         }
     }
 }

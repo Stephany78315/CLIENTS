@@ -15,14 +15,22 @@ using System.Reflection;
 using System.Threading.Tasks;
 using UPB.ProyectoFinal.Data;
 using UPB.ProyectoFinal.Logic.Manager;
+using Serilog;
+using UPB.ProyectoFinal.Clients.middlewares;
 
 namespace UPB.ProyectoFinal.Clients
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, Microsoft.AspNetCore.Hosting.IHostingEnvironment env)
         {
             Configuration = configuration;
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel
+                .Information()
+                .WriteTo.File($"{Directory.GetCurrentDirectory()}/Logger.log")
+                .CreateLogger();
+            Log.Information($"Se encuentra en: {env.EnvironmentName}");
         }
 
         public IConfiguration Configuration { get; }
@@ -46,16 +54,9 @@ namespace UPB.ProyectoFinal.Clients
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
-            app.UseHttpsRedirection();
+            app.UseGlobalExceptionHandler();
 
             app.UseRouting();
-
-            app.UseAuthorization();
 
             app.UseSwagger();
 

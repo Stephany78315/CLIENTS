@@ -3,19 +3,21 @@ using System.Collections.Generic;
 using UPB.ProyectoFinal.Data.Model;
 using System.IO;
 using Newtonsoft.Json;
+using Serilog;
+using UPB.ProyectoFinal.Data.Exceptions;
 
 namespace UPB.ProyectoFinal.Data
 {
-    public class DbContext: IDbContext
+    public class DbContext : IDbContext
     {
         public List<Client> ClientTable { get; set; }
         public string ruta;
-        
+
 
         public DbContext()
         {
             ruta = Directory.GetCurrentDirectory() + @"\clientes.json";
-           
+
             ClientTable = new List<Client>()
             { };
             File.WriteAllText(ruta, Newtonsoft.Json.JsonConvert.SerializeObject(ClientTable));
@@ -26,53 +28,84 @@ namespace UPB.ProyectoFinal.Data
 
         public List<Client> GetAllClients()
         {
-            List<Client> grupos = new List<Client>();
-             grupos = JsonConvert.DeserializeObject<List<Client>>(File.ReadAllText(ruta));
+            try
+            {
+                List<Client> grupos = new List<Client>();
+                grupos = JsonConvert.DeserializeObject<List<Client>>(File.ReadAllText(ruta));
 
-            return grupos;
+                return grupos;
+            }
+            catch (Exception e)
+            {
+                Log.Error("Se produjo un error" + e.StackTrace + e.Message);
+                throw new DataReadException("No se pudo leer los datos");
+            }
         }
         public List<Client> CreateClient(Client client)
         {
-            List<Client> grupos = new List<Client>();
-            grupos = JsonConvert.DeserializeObject<List<Client>>(File.ReadAllText(ruta));
-            grupos.Add(client);
-            File.WriteAllText(ruta, JsonConvert.SerializeObject(grupos));
+            try
+            {
+                List<Client> grupos = new List<Client>();
+                grupos = JsonConvert.DeserializeObject<List<Client>>(File.ReadAllText(ruta));
+                grupos.Add(client);
+                File.WriteAllText(ruta, JsonConvert.SerializeObject(grupos));
 
-            return grupos;
+                return grupos;
+            }
+            catch (Exception e)
+            {
+                Log.Error("Se produjo un error" + e.StackTrace + e.Message);
+                throw new DataWriteException("No se pudo crear el cliente por error de escritura");
+            }
         }
         public List<Client> UpdateClient(Client clientToUpdate)
         {
-            List<Client> grupos = new List<Client>();
-            grupos = JsonConvert.DeserializeObject<List<Client>>(File.ReadAllText(ruta));
+            try
+            {
+                List<Client> grupos = new List<Client>();
+                grupos = JsonConvert.DeserializeObject<List<Client>>(File.ReadAllText(ruta));
 
-            Client foundClient = grupos.Find(client => client.Client_Id == clientToUpdate.Client_Id);
-            foundClient.Name = clientToUpdate.Name;
-            foundClient.DNI = clientToUpdate.DNI;
-            foundClient.Address = clientToUpdate.Address;
-            foundClient.Phone = clientToUpdate.Phone;
-            foundClient.Ranking = clientToUpdate.Ranking;
+                Client foundClient = grupos.Find(client => client.Client_Id == clientToUpdate.Client_Id);
+                foundClient.Name = clientToUpdate.Name;
+                foundClient.DNI = clientToUpdate.DNI;
+                foundClient.Address = clientToUpdate.Address;
+                foundClient.Phone = clientToUpdate.Phone;
+                foundClient.Ranking = clientToUpdate.Ranking;
 
 
-            File.WriteAllText(ruta, JsonConvert.SerializeObject(grupos));
+                File.WriteAllText(ruta, JsonConvert.SerializeObject(grupos));
 
-            return grupos;
+                return grupos;
+            }
+            catch (Exception e)
+            {
+                Log.Error("Se produjo un error" + e.StackTrace + e.Message);
+                throw new DataWriteException("No se pudo actualizar los datos de cliente por la escritura");
+            }
 
         }
         public List<Client> DeleteClient(Client clientToDelete)
         {
-            List<Client> grupos = new List<Client>();
-            grupos = JsonConvert.DeserializeObject<List<Client>>(File.ReadAllText(ruta));
+            try
+            {
+                List<Client> grupos = new List<Client>();
+                grupos = JsonConvert.DeserializeObject<List<Client>>(File.ReadAllText(ruta));
 
-            grupos.RemoveAll(client => client.Client_Id == clientToDelete.Client_Id);
+                grupos.RemoveAll(client => client.Client_Id == clientToDelete.Client_Id);
 
-            Console.WriteLine(clientToDelete.Client_Id);
+                Console.WriteLine(clientToDelete.Client_Id);
 
-            File.WriteAllText(ruta, JsonConvert.SerializeObject(grupos));
+                File.WriteAllText(ruta, JsonConvert.SerializeObject(grupos));
 
-            return grupos;
+                return grupos;
+            } catch (Exception e) {
+                Log.Error("Se produjo un error" + e.StackTrace + e.Message);
+                throw new DataWriteException("No se pudo borrar los datos");
+            }
+
+
+
         }
-
-
-
     }
 }
+
