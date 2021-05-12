@@ -15,6 +15,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using UPB.ProyectoFinal.Data;
 using UPB.ProyectoFinal.Logic.Manager;
+using UPB.ProyectoFinal.Services;
 
 namespace UPB.ProyectoFinal.Clients
 {
@@ -33,6 +34,7 @@ namespace UPB.ProyectoFinal.Clients
             services.AddControllers();
             services.AddSingleton<IDbContext, DbContext>();
             services.AddTransient<IClientManager, ClientManager>();
+            services.AddTransient<ICClientsService, CClientsService>();
             services.AddSwaggerGen(p =>
                 {
                     p.SwaggerDoc("v3", new OpenApiInfo { Title = "Proyecto Final", Version = "v3" });

@@ -2,17 +2,23 @@
 using System.Collections.Generic;
 using UPB.ProyectoFinal.Logic.Model;
 using UPB.ProyectoFinal.Data;
+using UPB.ProyectoFinal.Services;
+using UPB.ProyectoFinal.Services.Models;
 
 namespace UPB.ProyectoFinal.Logic.Manager
 {
     public class ClientManager : IClientManager
     {
         private readonly IDbContext _dbContext;
+        private readonly IClientService _clientService;
 
-        public ClientManager(IDbContext dbContext)
+        public ClientManager(IDbContext dbContext, IClientService clientService)
         {
             _dbContext = dbContext;
+            _clientService = clientService;
         }
+
+     
 
         public List<Client> CreateClient(Client client)
         {
