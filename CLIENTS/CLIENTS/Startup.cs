@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using UPB.ProyectoFinal.Data;
 using UPB.ProyectoFinal.Logic.Manager;
 using Serilog;
+using UPB.ProyectoFinal.Clients.middlewares;
 
 namespace UPB.ProyectoFinal.Clients
 {
@@ -53,16 +54,9 @@ namespace UPB.ProyectoFinal.Clients
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
-            app.UseHttpsRedirection();
+            app.UseGlobalExceptionHandler();
 
             app.UseRouting();
-
-            app.UseAuthorization();
 
             app.UseSwagger();
 
