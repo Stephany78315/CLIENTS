@@ -20,18 +20,18 @@ namespace UPB.ProyectoFinal.Logic.Manager
         
         public List<Client> CreateClient(Client client)
         {
-           if (String.IsNullOrEmpty (client.Nombre)) {
+           if (client.Nombre =="") {
                 ClientAttrException e = new ClientAttrException("No puede dejar el nombre vacio");
                 Log.Error("Se produjo un error"+e.StackTrace+e.Message);
                 throw e;
             }
-            if (10000000 < client.CI && client.CI < 100000000)
+            if (!(10000000 < client.CI && client.CI < 100000000))
             {
                 ClientAttrException e = new ClientAttrException("Carnet de identidad invalido");
                 Log.Error("Se produjo un error" + e.StackTrace + e.Message);
                 throw e;
             }
-            if (0<client.Ranking && client.Ranking<6)
+            if (!(0<client.Ranking && client.Ranking<6))
             {
                 ClientAttrException e = new ClientAttrException("Ranking es invalido");
                 Log.Error("Se produjo un error" + e.StackTrace + e.Message);
@@ -43,19 +43,19 @@ namespace UPB.ProyectoFinal.Logic.Manager
 
         public List<Client> DeleteClient(Client client)
         {
-            if (String.IsNullOrEmpty(client.Nombre))
+            if (client.Nombre == "")
             {
                 ClientAttrException e = new ClientAttrException("No puede dejar el nombre vacio");
                 Log.Error("Se produjo un error" + e.StackTrace + e.Message);
                 throw e;
             }
-            if (10000000 < client.CI && client.CI < 100000000)
+            if (!(10000000 < client.CI && client.CI < 100000000))
             {
                 ClientAttrException e = new ClientAttrException("Carnet de identidad invalido");
                 Log.Error("Se produjo un error" + e.StackTrace + e.Message);
                 throw e;
             }
-            if (0 < client.Ranking && client.Ranking < 6)
+            if (!(10000000 < client.CI && client.CI < 100000000))
             {
                 ClientAttrException e = new ClientAttrException("Ranking es invalido");
                 Log.Error("Se produjo un error" + e.StackTrace + e.Message);
@@ -71,24 +71,25 @@ namespace UPB.ProyectoFinal.Logic.Manager
 
         public List<Client> UpdateClient(Client client)
         {
-            if (String.IsNullOrEmpty(client.Nombre))
+            if (client.Nombre == "")
             {
                 ClientAttrException e = new ClientAttrException("No puede dejar el nombre vacio");
                 Log.Error("Se produjo un error" + e.StackTrace + e.Message);
                 throw e;
             }
-            if (10000000 < client.CI && client.CI < 100000000)
+            if (!(10000000 < client.CI && client.CI < 100000000))
             {
                 ClientAttrException e = new ClientAttrException("Carnet de identidad invalido");
                 Log.Error("Se produjo un error" + e.StackTrace + e.Message);
                 throw e;
             }
-            if (0 < client.Ranking && client.Ranking < 6)
+            if (!(10000000 < client.CI && client.CI < 100000000))
             {
                 ClientAttrException e = new ClientAttrException("Ranking es invalido");
                 Log.Error("Se produjo un error" + e.StackTrace + e.Message);
                 throw e;
             }
+            client.Codigo = GenerateCode(client);
             return DTOMappers.MapClients(_dbContext.UpdateClient(DTOMappers.MapClientLD(client)));
         }
 
