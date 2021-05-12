@@ -46,10 +46,10 @@ namespace UPB.ProyectoFinal.Clients.Controllers
         [HttpDelete]
         public List<Client> DeleteClient(Client client)
         {
-            
-                return _clientManager.DeleteClient(client);
-            
-           
+
+            return _clientManager.DeleteClient(client);
+
+
         }
     }
 }
