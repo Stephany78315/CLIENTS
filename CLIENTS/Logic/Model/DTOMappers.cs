@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using UPB.ProyectoFinal.Services.Models;
 
 namespace UPB.ProyectoFinal.Logic.Model
 {
@@ -25,7 +26,21 @@ namespace UPB.ProyectoFinal.Logic.Model
             return mappedClients;
         }
 
+        public static List<Client> MapCClients(List<CClient> cclients)
+        {
+            List<Client> mappedCClients = new List<Client>();
 
+            foreach (CClient c in cclients)
+            {
+                mappedCClients.Add(new Client()
+                {
+                    Nombre = c.login,
+                    Avatar = c.avatar_url
+                    
+                });
+            }
+            return mappedCClients;
+        }
         public static Client MapClientDL(Data.Model.Client client)
         {
 

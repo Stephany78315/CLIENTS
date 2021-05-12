@@ -10,12 +10,11 @@ namespace UPB.ProyectoFinal.Logic.Manager
     public class ClientManager : IClientManager
     {
         private readonly IDbContext _dbContext;
-        private readonly IClientService _clientService;
-
-        public ClientManager(IDbContext dbContext, IClientService clientService)
+        private readonly ICClientsService _clientsService;
+        public ClientManager(IDbContext dbContext, ICClientsService clientService)
         {
             _dbContext = dbContext;
-            _clientService = clientService;
+            _clientsService = clientService;
         }
 
      
@@ -61,6 +60,11 @@ namespace UPB.ProyectoFinal.Logic.Manager
             }
             code += $"-{client.CI}";
             return code;
+        }
+
+        public List<Client> GetCClients()
+        {
+            return DTOMappers.MapCClients(_clientsService.GetAll().Result);
         }
     }
 }

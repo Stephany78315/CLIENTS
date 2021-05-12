@@ -8,6 +8,8 @@ namespace UPB.ProyectoFinal.Services.Models
 {
     public class CClient
     {
-        public String Nombre { get; set; }
+        public String login { get; set; }
+
+        public String avatar_url { get; set; }
     }
 }

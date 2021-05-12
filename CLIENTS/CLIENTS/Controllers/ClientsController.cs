@@ -16,7 +16,7 @@ namespace UPB.ProyectoFinal.Clients.Controllers
     {
         private readonly IConfiguration _config;
         private readonly IClientManager _clientManager;
-        public ClientsController(IConfiguration config,IClientManager clientManager)
+        public ClientsController(IConfiguration config, IClientManager clientManager)
         {
             _config = config;
             _clientManager = clientManager;
@@ -42,6 +42,15 @@ namespace UPB.ProyectoFinal.Clients.Controllers
         public List<Client> DeleteClient(Client client)
         {
             return _clientManager.DeleteClient(client);
+        }
+
+        [HttpGet]
+        [Route("competition/clients")]
+        
+        public List<Client> GetCClients()
+
+        {
+            return _clientManager.GetCClients();
         }
     }
 }
