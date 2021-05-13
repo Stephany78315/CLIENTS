@@ -17,14 +17,22 @@ using System.Threading.Tasks;
 using UPB.ProyectoFinal.Data;
 using UPB.ProyectoFinal.Logic.Manager;
 using UPB.ProyectoFinal.Services;
+using UPB.ProyectoFinal.Clients.middlewares;
+
 
 namespace UPB.ProyectoFinal.Clients
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, Microsoft.AspNetCore.Hosting.IHostingEnvironment env)
         {
             Configuration = configuration;
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel
+                .Information()
+                .WriteTo.File($"{Directory.GetCurrentDirectory()}/Logger.log")
+                .CreateLogger();
+            Log.Information($"Se encuentra en: {env.EnvironmentName}");
         }
 
         public IConfiguration Configuration { get; }
@@ -32,11 +40,6 @@ namespace UPB.ProyectoFinal.Clients
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-//            services.AddCors(options => {
-//                options.AddPolicy("AllowGetUserAgent", builder => builder.WithMethods("GET").WithHeaders("User-Agent").WithOrigins("192.168.1.10"));
-//            });
-
             services.AddControllers();
             services.AddSingleton<IDbContext, DbContext>();
             services.AddTransient<IClientManager, ClientManager>();
@@ -54,18 +57,9 @@ namespace UPB.ProyectoFinal.Clients
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
-            //app.UseCors("AllowGetUserAgent");
-
-            app.UseHttpsRedirection();
+            app.UseGlobalExceptionHandler();
 
             app.UseRouting();
-
-            app.UseAuthorization();
 
             app.UseSwagger();
 
