@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,6 @@ namespace UPB.ProyectoFinal.Services
 {
     public interface ICClientsService
     {
-        public Task<List<CClient>> GetAll();
+        public Task<List<CClient>> GetAll(IConfiguration config);
     }
 }

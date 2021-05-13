@@ -30,7 +30,7 @@ namespace UPB.ProyectoFinal.Clients
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel
                 .Information()
-                .WriteTo.File($"{Directory.GetCurrentDirectory()}/Logger.log")
+                .WriteTo.File(configuration.GetSection("Location").GetSection("DirLog").Value)
                 .CreateLogger();
             Log.Information($"Se encuentra en: {env.EnvironmentName}");
         }

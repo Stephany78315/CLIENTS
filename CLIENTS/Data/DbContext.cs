@@ -5,6 +5,7 @@ using System.IO;
 using Newtonsoft.Json;
 using Serilog;
 using UPB.ProyectoFinal.Data.Exceptions;
+using Microsoft.Extensions.Configuration;
 
 namespace UPB.ProyectoFinal.Data
 {
@@ -14,9 +15,9 @@ namespace UPB.ProyectoFinal.Data
         public string ruta;
 
 
-        public DbContext()
+        public DbContext(IConfiguration config)
         {
-            ruta = Directory.GetCurrentDirectory() + @"\clientes.json";
+            ruta = config.GetSection("Location").GetSection("DirJson").Value;
 
             ClientTable = new List<Client>()
             { };
