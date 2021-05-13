@@ -3,3 +3,5 @@ build
 obj
 bin
 .vscode
+Logger.log
+clientes.json
