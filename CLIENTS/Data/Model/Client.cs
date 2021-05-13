@@ -11,6 +11,7 @@ namespace UPB.ProyectoFinal.Data.Model
         public string Address { get; set; }
         public int Phone { get; set; }
         public int Ranking { get; set; }
-        public string Client_Id { get; set; }
+        public string Client_Code { get; set; }
+        public int idClient { get; set; }
     }
 }

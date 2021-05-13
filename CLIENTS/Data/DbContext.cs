@@ -65,12 +65,13 @@ namespace UPB.ProyectoFinal.Data
                 List<Client> grupos = new List<Client>();
                 grupos = JsonConvert.DeserializeObject<List<Client>>(File.ReadAllText(ruta));
 
-                Client foundClient = grupos.Find(client => client.Client_Id == clientToUpdate.Client_Id);
+                Client foundClient = grupos.Find(client => client.idClient == clientToUpdate.idClient);
                 foundClient.Name = clientToUpdate.Name;
                 foundClient.DNI = clientToUpdate.DNI;
                 foundClient.Address = clientToUpdate.Address;
                 foundClient.Phone = clientToUpdate.Phone;
                 foundClient.Ranking = clientToUpdate.Ranking;
+                foundClient.Client_Code = clientToUpdate.Client_Code;
 
 
                 File.WriteAllText(ruta, JsonConvert.SerializeObject(grupos));
@@ -91,9 +92,7 @@ namespace UPB.ProyectoFinal.Data
                 List<Client> grupos = new List<Client>();
                 grupos = JsonConvert.DeserializeObject<List<Client>>(File.ReadAllText(ruta));
 
-                grupos.RemoveAll(client => client.Client_Id == clientToDelete.Client_Id);
-
-                Console.WriteLine(clientToDelete.Client_Id);
+                grupos.RemoveAll(client => client.idClient == clientToDelete.idClient);
 
                 File.WriteAllText(ruta, JsonConvert.SerializeObject(grupos));
 

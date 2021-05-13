@@ -12,5 +12,6 @@ namespace UPB.ProyectoFinal.Logic.Model
         public int Telefono { get; set; }
         public int Ranking { get; set; }
         public string Codigo { get; set; }
+        public int idClient { get; set; }
     }
 }

@@ -20,7 +20,8 @@ namespace UPB.ProyectoFinal.Logic.Model
                     Direccion = c.Address,
                     Telefono = c.Phone,
                     Ranking = c.Ranking,
-                    Codigo = c.Client_Id
+                    Codigo = c.Client_Code,
+                    idClient = c.idClient
                 });
             }
             return mappedClients;
@@ -52,7 +53,8 @@ namespace UPB.ProyectoFinal.Logic.Model
                 Direccion = client.Address,
                 Telefono = client.Phone,
                 Ranking = client.Ranking,
-                Codigo = client.Client_Id
+                Codigo = client.Client_Code,
+                idClient = client.idClient
             };
 
 
@@ -69,7 +71,8 @@ namespace UPB.ProyectoFinal.Logic.Model
                 Address = c.Direccion,
                 Phone = c.Telefono,
                 Ranking = c.Ranking,
-                Client_Id = c.Codigo
+                Client_Code = c.Codigo,
+                idClient = c.idClient
             };
             return nuevo;
         }
