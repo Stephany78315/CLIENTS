@@ -1,0 +1,32 @@
+﻿{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "Develop": {
+      "commandName": "Project",
+      "launchBrowser": false,
+      "launchUrl": "swagger",
+      "applicationUrl": "http://localhost:5001",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "Production": {
+        "commandName": "Project",
+        "launchBrowser": false,
+        "launchUrl": "swagger",
+        "applicationUrl": "http://localhost:5001",
+        "environmentVariables": {
+            "ASPNETCORE_ENVIRONMENT": "Production"
+        }
+    },
+    "QA": {
+        "commandName": "Project",
+        "launchBrowser": false,
+        "launchUrl": "swagger",
+        "applicationUrl": "http://localhost:5001",
+        "environmentVariables": {
+            "ASPNETCORE_ENVIRONMENT": "QA"
+        }
+    }
+  }
+}
