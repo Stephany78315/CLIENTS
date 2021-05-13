@@ -10,6 +10,6 @@ namespace UPB.ProyectoFinal.Data
         List<Client> GetAllClients();
         List<Client> CreateClient(Client client);
         List<Client> UpdateClient(Client client);
-        List<Client> DeleteClient(Client client);
+        List<Client> DeleteClient(int clientId);
     }
 }

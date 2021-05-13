@@ -85,14 +85,14 @@ namespace UPB.ProyectoFinal.Data
             }
 
         }
-        public List<Client> DeleteClient(Client clientToDelete)
+        public List<Client> DeleteClient(int clientIdToDelete)
         {
             try
             {
                 List<Client> grupos = new List<Client>();
                 grupos = JsonConvert.DeserializeObject<List<Client>>(File.ReadAllText(ruta));
 
-                grupos.RemoveAll(client => client.idClient == clientToDelete.idClient);
+                grupos.RemoveAll(client => client.idClient == clientIdToDelete);
 
                 File.WriteAllText(ruta, JsonConvert.SerializeObject(grupos));
 

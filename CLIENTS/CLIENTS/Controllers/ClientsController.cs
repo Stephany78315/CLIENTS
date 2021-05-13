@@ -40,16 +40,16 @@ namespace UPB.ProyectoFinal.Clients.Controllers
         [Route("{clientId}")]
         public List<Client> UpdateClient([FromRoute] int clientId, [FromBody] Client client)
         {
+            client.idClient = clientId;   
+            return _clientManager.UpdateClient(client);
            
-                return _clientManager.UpdateClient(client);
-           
-            }
+        }
         [HttpDelete]
         [Route("{clientId}")]
-        public List<Client> DeleteClient([FromRoute] int clientId, [FromBody] Client client)
+        public List<Client> DeleteClient([FromRoute] int clientId)
         {
 
-            return _clientManager.DeleteClient(client);
+            return _clientManager.DeleteClient(clientId);
 
 
         }
