@@ -18,7 +18,6 @@ namespace UPB.ProyectoFinal.Data
         public DbContext(IConfiguration config)
         {
             ruta = config.GetSection("Location").GetSection("DirJson").Value;
-
             ClientTable = new List<Client>()
             { };
             File.WriteAllText(ruta, Newtonsoft.Json.JsonConvert.SerializeObject(ClientTable));
