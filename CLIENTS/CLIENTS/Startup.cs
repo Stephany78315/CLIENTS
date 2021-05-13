@@ -26,7 +26,13 @@ namespace UPB.ProyectoFinal.Clients
     {
         public Startup(IConfiguration configuration, Microsoft.AspNetCore.Hosting.IHostingEnvironment env)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json")
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json")
+                .AddEnvironmentVariables();
+
+            Configuration = builder.Build();
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel
                 .Information()
