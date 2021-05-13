@@ -20,7 +20,7 @@ namespace Services
                 List<CClient> clients = new List<CClient>();
                 HttpClient client = new HttpClient();
 
-                client.BaseAddress = new Uri("https://api.github.com");
+                client.BaseAddress = new Uri(config.GetSection("Location").GetSection("DirSer").Value);
                 client.DefaultRequestHeaders.Add("User-Agent", @"Mozilla/5.0 (Windows NT 10; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0");
 
 
