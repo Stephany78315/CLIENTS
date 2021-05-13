@@ -26,19 +26,19 @@ namespace UPB.ProyectoFinal.Logic.Manager
         {
            if (client.Nombre =="") {
                 ClientAttrException e = new ClientAttrException("No puede dejar el nombre vacio");
-                Log.Error("Se produjo un error"+e.StackTrace+e.Message);
+                Log.Error("Se produjo un error "+e.StackTrace+e.Message);
                 throw e;
             }
             if (!(1000000 < client.CI && client.CI < 100000000))
             {
                 ClientAttrException e = new ClientAttrException("Carnet de identidad invalido");
-                Log.Error("Se produjo un error" + e.StackTrace + e.Message);
+                Log.Error("Se produjo un error " + e.StackTrace + e.Message);
                 throw e;
             }
             if (!(0<client.Ranking && client.Ranking<6))
             {
                 ClientAttrException e = new ClientAttrException("Ranking es invalido");
-                Log.Error("Se produjo un error" + e.StackTrace + e.Message);
+                Log.Error("Se produjo un error " + e.StackTrace + e.Message);
                 throw e;
             }
             client.Codigo = GenerateCode(client);  
@@ -60,19 +60,19 @@ namespace UPB.ProyectoFinal.Logic.Manager
             if (client.Nombre == "")
             {
                 ClientAttrException e = new ClientAttrException("No puede dejar el nombre vacio");
-                Log.Error("Se produjo un error" + e.StackTrace + e.Message);
+                Log.Error("Se produjo un error " + e.StackTrace + e.Message);
                 throw e;
             }
             if (!(1000000 < client.CI && client.CI < 100000000))
             {
                 ClientAttrException e = new ClientAttrException("Carnet de identidad invalido");
-                Log.Error("Se produjo un error" + e.StackTrace + e.Message);
+                Log.Error("Se produjo un error " + e.StackTrace + e.Message);
                 throw e;
             }
             if (!(0<client.Ranking && client.Ranking<6))
             {
                 ClientAttrException e = new ClientAttrException("Ranking es invalido");
-                Log.Error("Se produjo un error" + e.StackTrace + e.Message);
+                Log.Error("Se produjo un error " + e.StackTrace + e.Message);
                 throw e;
             }
             client.Codigo = GenerateCode(client);
