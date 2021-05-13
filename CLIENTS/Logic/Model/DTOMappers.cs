@@ -20,19 +20,20 @@ namespace UPB.ProyectoFinal.Logic.Model
                     Direccion = c.Address,
                     Telefono = c.Phone,
                     Ranking = c.Ranking,
-                    Codigo = c.Client_Id
+                    Codigo = c.Client_Code,
+                    idClient = c.idClient
                 });
             }
             return mappedClients;
         }
 
-        public static List<CompClient> MapCClients(List<CClient> cclients)
+        public static List<Client> MapCClients(List<CClient> cclients)
         {
-            List<CompClient> mappedCClients = new List<CompClient>();
+            List<Client> mappedCClients = new List<Client>();
 
             foreach (CClient c in cclients)
             {
-                mappedCClients.Add(new CompClient()
+                mappedCClients.Add(new Client()
                 {
                     Nombre = c.login,
                     Avatar = c.avatar_url
@@ -52,7 +53,8 @@ namespace UPB.ProyectoFinal.Logic.Model
                 Direccion = client.Address,
                 Telefono = client.Phone,
                 Ranking = client.Ranking,
-                Codigo = client.Client_Id
+                Codigo = client.Client_Code,
+                idClient = client.idClient
             };
 
 
@@ -69,7 +71,8 @@ namespace UPB.ProyectoFinal.Logic.Model
                 Address = c.Direccion,
                 Phone = c.Telefono,
                 Ranking = c.Ranking,
-                Client_Id = c.Codigo
+                Client_Code = c.Codigo,
+                idClient = c.idClient
             };
             return nuevo;
         }

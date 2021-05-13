@@ -10,8 +10,8 @@ namespace UPB.ProyectoFinal.Logic.Manager
         List<Client> GetAllClients();
         List<Client> CreateClient(Client client);
         List<Client> UpdateClient(Client client);
-        List<Client> DeleteClient(Client client);
+        List<Client> DeleteClient(int clientId);
 
-        List<CompClient> GetCClients();
+        List<Client> GetCClients();
     }
 }

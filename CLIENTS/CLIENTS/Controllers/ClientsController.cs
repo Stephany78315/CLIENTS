@@ -12,7 +12,7 @@ using UPB.ProyectoFinal.Logic.Manager;
 namespace UPB.ProyectoFinal.Clients.Controllers
 {
     [ApiController]
-    [Route("api/clients")]
+    [Route("api/clients/")]
     public class ClientsController : ControllerBase
     {
         private readonly IConfiguration _config;
@@ -37,17 +37,19 @@ namespace UPB.ProyectoFinal.Clients.Controllers
             
             }
         [HttpPut]
-        public List<Client> UpdateClient(Client client)
+        [Route("{clientId}")]
+        public List<Client> UpdateClient([FromRoute] int clientId, [FromBody] Client client)
         {
+            client.idClient = clientId;   
+            return _clientManager.UpdateClient(client);
            
-                return _clientManager.UpdateClient(client);
-           
-            }
+        }
         [HttpDelete]
-        public List<Client> DeleteClient(Client client)
+        [Route("{clientId}")]
+        public List<Client> DeleteClient([FromRoute] int clientId)
         {
 
-            return _clientManager.DeleteClient(client);
+            return _clientManager.DeleteClient(clientId);
 
 
         }
@@ -55,7 +57,7 @@ namespace UPB.ProyectoFinal.Clients.Controllers
         [HttpGet]
         [Route("competition/clients")]
         
-        public List<CompClient> GetCClients()
+        public List<Client> GetCClients()
 
         {
             return _clientManager.GetCClients();

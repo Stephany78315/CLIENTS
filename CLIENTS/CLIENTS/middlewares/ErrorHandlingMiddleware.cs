@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Services.Exceptions;
 using UPB.ProyectoFinal.Clients.Models;
 using UPB.ProyectoFinal.Data.Exceptions;
 using UPB.ProyectoFinal.Logic.Exceptions;
@@ -57,6 +58,14 @@ namespace UPB.ProyectoFinal.Clients.middlewares
                 {
                     StatusCode = 200,
                     ErrorMessage = "Ocurrio un error en el servidor en el registro de clientes"
+                };
+            }
+            else if (e is ServiceReadException)
+            {
+                MyError = new ExceptionResponse
+                {
+                    StatusCode = 500,
+                    ErrorMessage = "Ocurrio un error en servicio externo"
                 };
             }
             else
