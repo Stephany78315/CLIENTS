@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CLIENTS", "CLIENTS\CLIENTS.csproj", "{EFBDF6FF-B4A4-47A8-BF1E-73B741F59F85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CLIENTS", "CLIENTS\CLIENTS.csproj", "{EFBDF6FF-B4A4-47A8-BF1E-73B741F59F85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{987C495B-5D25-46D4-A201-11526A310D23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic", "Logic\Logic.csproj", "{987C495B-5D25-46D4-A201-11526A310D23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{5AC2BA02-32AF-4347-877B-2014350D7CD1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{5AC2BA02-32AF-4347-877B-2014350D7CD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{EBF0F7FA-77D1-411A-A7D4-3F78027AFB1F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{5AC2BA02-32AF-4347-877B-2014350D7CD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5AC2BA02-32AF-4347-877B-2014350D7CD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5AC2BA02-32AF-4347-877B-2014350D7CD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBF0F7FA-77D1-411A-A7D4-3F78027AFB1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBF0F7FA-77D1-411A-A7D4-3F78027AFB1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBF0F7FA-77D1-411A-A7D4-3F78027AFB1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBF0F7FA-77D1-411A-A7D4-3F78027AFB1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

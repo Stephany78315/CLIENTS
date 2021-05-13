@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,8 +16,9 @@ using System.Reflection;
 using System.Threading.Tasks;
 using UPB.ProyectoFinal.Data;
 using UPB.ProyectoFinal.Logic.Manager;
-using Serilog;
+using UPB.ProyectoFinal.Services;
 using UPB.ProyectoFinal.Clients.middlewares;
+
 
 namespace UPB.ProyectoFinal.Clients
 {
@@ -41,6 +43,7 @@ namespace UPB.ProyectoFinal.Clients
             services.AddControllers();
             services.AddSingleton<IDbContext, DbContext>();
             services.AddTransient<IClientManager, ClientManager>();
+            services.AddTransient<ICClientsService, CClientsService>();
             services.AddSwaggerGen(p =>
                 {
                     p.SwaggerDoc("v3", new OpenApiInfo { Title = "Proyecto Final", Version = "v3" });

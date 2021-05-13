@@ -2,22 +2,23 @@
 using System.Collections.Generic;
 using UPB.ProyectoFinal.Logic.Model;
 using UPB.ProyectoFinal.Data;
+using UPB.ProyectoFinal.Services;
+using UPB.ProyectoFinal.Services.Models;
 using UPB.ProyectoFinal.Logic.Exceptions;
 using Serilog;
-
 
 namespace UPB.ProyectoFinal.Logic.Manager
 {
     public class ClientManager : IClientManager
     {
         private readonly IDbContext _dbContext;
-
-        public ClientManager(IDbContext dbContext)
+        private readonly ICClientsService _clientsService;
+        public ClientManager(IDbContext dbContext, ICClientsService clientService)
         {
             _dbContext = dbContext;
+            _clientsService = clientService;
         }
 
-        
         public List<Client> CreateClient(Client client)
         {
            if (client.Nombre =="") {
@@ -25,7 +26,7 @@ namespace UPB.ProyectoFinal.Logic.Manager
                 Log.Error("Se produjo un error"+e.StackTrace+e.Message);
                 throw e;
             }
-            if (!(10000000 < client.CI && client.CI < 100000000))
+            if (!(1000000 < client.CI && client.CI < 100000000))
             {
                 ClientAttrException e = new ClientAttrException("Carnet de identidad invalido");
                 Log.Error("Se produjo un error" + e.StackTrace + e.Message);
@@ -49,13 +50,13 @@ namespace UPB.ProyectoFinal.Logic.Manager
                 Log.Error("Se produjo un error" + e.StackTrace + e.Message);
                 throw e;
             }
-            if (!(10000000 < client.CI && client.CI < 100000000))
+            if (!(1000000 < client.CI && client.CI < 100000000))
             {
                 ClientAttrException e = new ClientAttrException("Carnet de identidad invalido");
                 Log.Error("Se produjo un error" + e.StackTrace + e.Message);
                 throw e;
             }
-            if (!(10000000 < client.CI && client.CI < 100000000))
+            if (!(0<client.Ranking && client.Ranking<6))
             {
                 ClientAttrException e = new ClientAttrException("Ranking es invalido");
                 Log.Error("Se produjo un error" + e.StackTrace + e.Message);
@@ -77,13 +78,13 @@ namespace UPB.ProyectoFinal.Logic.Manager
                 Log.Error("Se produjo un error" + e.StackTrace + e.Message);
                 throw e;
             }
-            if (!(10000000 < client.CI && client.CI < 100000000))
+            if (!(1000000 < client.CI && client.CI < 100000000))
             {
                 ClientAttrException e = new ClientAttrException("Carnet de identidad invalido");
                 Log.Error("Se produjo un error" + e.StackTrace + e.Message);
                 throw e;
             }
-            if (!(10000000 < client.CI && client.CI < 100000000))
+            if (!(0<client.Ranking && client.Ranking<6))
             {
                 ClientAttrException e = new ClientAttrException("Ranking es invalido");
                 Log.Error("Se produjo un error" + e.StackTrace + e.Message);
@@ -112,6 +113,12 @@ namespace UPB.ProyectoFinal.Logic.Manager
             }
             code += $"-{client.CI}";
             return code;
+        }
+
+        public List<CompClient> GetCClients()
+        {
+            var CClients = DTOMappers.MapCClients(_clientsService.GetAll().Result);
+            return CClients;
         }
     }
 }
