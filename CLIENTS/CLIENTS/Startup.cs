@@ -18,7 +18,7 @@ using UPB.ProyectoFinal.Data;
 using UPB.ProyectoFinal.Logic.Manager;
 using UPB.ProyectoFinal.Services;
 using UPB.ProyectoFinal.Clients.middlewares;
-
+using Serilog;
 
 namespace UPB.ProyectoFinal.Clients
 {
