@@ -26,13 +26,13 @@ namespace UPB.ProyectoFinal.Logic.Model
             return mappedClients;
         }
 
-        public static List<Client> MapCClients(List<CClient> cclients)
+        public static List<CompClient> MapCClients(List<CClient> cclients)
         {
-            List<Client> mappedCClients = new List<Client>();
+            List<CompClient> mappedCClients = new List<CompClient>();
 
             foreach (CClient c in cclients)
             {
-                mappedCClients.Add(new Client()
+                mappedCClients.Add(new CompClient()
                 {
                     Nombre = c.login,
                     Avatar = c.avatar_url

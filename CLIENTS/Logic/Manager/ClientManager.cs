@@ -62,9 +62,10 @@ namespace UPB.ProyectoFinal.Logic.Manager
             return code;
         }
 
-        public List<Client> GetCClients()
+        public List<CompClient> GetCClients()
         {
-            return DTOMappers.MapCClients(_clientsService.GetAll().Result);
+            var CClients = DTOMappers.MapCClients(_clientsService.GetAll().Result);
+            return CClients;
         }
     }
 }

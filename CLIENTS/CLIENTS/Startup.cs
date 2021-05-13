@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -31,6 +32,11 @@ namespace UPB.ProyectoFinal.Clients
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+//            services.AddCors(options => {
+//                options.AddPolicy("AllowGetUserAgent", builder => builder.WithMethods("GET").WithHeaders("User-Agent").WithOrigins("192.168.1.10"));
+//            });
+
             services.AddControllers();
             services.AddSingleton<IDbContext, DbContext>();
             services.AddTransient<IClientManager, ClientManager>();
@@ -52,6 +58,8 @@ namespace UPB.ProyectoFinal.Clients
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            //app.UseCors("AllowGetUserAgent");
 
             app.UseHttpsRedirection();
 
