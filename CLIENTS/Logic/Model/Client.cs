@@ -13,5 +13,6 @@ namespace UPB.ProyectoFinal.Logic.Model
         public int Ranking { get; set; }
         public string Codigo { get; set; }
         public int idClient { get; set; }
+        public string Avatar { get; set; }
     }
 }

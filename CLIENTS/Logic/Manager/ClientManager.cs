@@ -115,7 +115,7 @@ namespace UPB.ProyectoFinal.Logic.Manager
             return code;
         }
 
-        public List<CompClient> GetCClients()
+        public List<Client> GetCClients()
         {
             var CClients = DTOMappers.MapCClients(_clientsService.GetAll().Result);
             return CClients;

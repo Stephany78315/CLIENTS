@@ -57,7 +57,7 @@ namespace UPB.ProyectoFinal.Clients.Controllers
         [HttpGet]
         [Route("competition/clients")]
         
-        public List<CompClient> GetCClients()
+        public List<Client> GetCClients()
 
         {
             return _clientManager.GetCClients();
