@@ -6,6 +6,7 @@ using UPB.ProyectoFinal.Services;
 using UPB.ProyectoFinal.Services.Models;
 using UPB.ProyectoFinal.Logic.Exceptions;
 using Serilog;
+using Microsoft.Extensions.Configuration;
 
 namespace UPB.ProyectoFinal.Logic.Manager
 {
@@ -13,10 +14,12 @@ namespace UPB.ProyectoFinal.Logic.Manager
     {
         private readonly IDbContext _dbContext;
         private readonly ICClientsService _clientsService;
-        public ClientManager(IDbContext dbContext, ICClientsService clientService)
+        private IConfiguration _config;
+        public ClientManager(IDbContext dbContext, ICClientsService clientService, IConfiguration config)
         {
             _dbContext = dbContext;
             _clientsService = clientService;
+            _config = config;
         }
 
         public List<Client> CreateClient(Client client)
@@ -117,7 +120,7 @@ namespace UPB.ProyectoFinal.Logic.Manager
 
         public List<CompClient> GetCClients()
         {
-            var CClients = DTOMappers.MapCClients(_clientsService.GetAll().Result);
+            var CClients = DTOMappers.MapCClients(_clientsService.GetAll(_config).Result);
             return CClients;
         }
     }

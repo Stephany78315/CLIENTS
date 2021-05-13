@@ -18,7 +18,7 @@ using UPB.ProyectoFinal.Data;
 using UPB.ProyectoFinal.Logic.Manager;
 using UPB.ProyectoFinal.Services;
 using UPB.ProyectoFinal.Clients.middlewares;
-
+using Serilog;
 
 namespace UPB.ProyectoFinal.Clients
 {
@@ -30,7 +30,7 @@ namespace UPB.ProyectoFinal.Clients
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel
                 .Information()
-                .WriteTo.File($"{Directory.GetCurrentDirectory()}/Logger.log")
+                .WriteTo.File(configuration.GetSection("Location").GetSection("DirLog").Value)
                 .CreateLogger();
             Log.Information($"Se encuentra en: {env.EnvironmentName}");
         }
