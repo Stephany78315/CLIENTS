@@ -20,15 +20,15 @@ namespace Services
                 List<CClient> clients = new List<CClient>();
                 HttpClient client = new HttpClient();
 
-                client.BaseAddress = new Uri(config.GetSection("Location").GetSection("DirSer").Value);
-                client.DefaultRequestHeaders.Add("User-Agent", @"Mozilla/5.0 (Windows NT 10; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0");
+                client.BaseAddress = new Uri(config.GetConnectionString("DirSer"));
+                string name = config.GetSection("ReqHeaders").GetSection("Name").Value;
+                string val = config.GetSection("ReqHeaders").GetSection("Value").Value;
+                client.DefaultRequestHeaders.Add(name, val);
 
 
-                var response = await client.GetAsync("/users");
+                var response = await client.GetAsync(config.GetSection("ReqHeaders").GetSection("Route").Value);
                 string respBody = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(respBody);
                 clients = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CClient>>(respBody);
-                Console.WriteLine(clients);
 
                 return clients;
             }

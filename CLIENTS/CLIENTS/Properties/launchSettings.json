@@ -3,7 +3,7 @@
   "profiles": {
     "Develop": {
       "commandName": "Project",
-      "launchBrowser": true,
+      "launchBrowser": false,
       "launchUrl": "swagger",
       "applicationUrl": "http://localhost:5001",
       "environmentVariables": {
@@ -11,22 +11,22 @@
       }
     },
     "Production": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:5001",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Production"
-      }
+        "commandName": "Project",
+        "launchBrowser": false,
+        "launchUrl": "swagger",
+        "applicationUrl": "http://localhost:5001",
+        "environmentVariables": {
+            "ASPNETCORE_ENVIRONMENT": "Production"
+        }
     },
     "QA": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:5001",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "QA"
-      }
+        "commandName": "Project",
+        "launchBrowser": false,
+        "launchUrl": "swagger",
+        "applicationUrl": "http://localhost:5001",
+        "environmentVariables": {
+            "ASPNETCORE_ENVIRONMENT": "QA"
+        }
     }
   }
 }
